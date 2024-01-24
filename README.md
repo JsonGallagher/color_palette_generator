@@ -24,14 +24,6 @@ To set up this project for development or local use, follow these steps:
     OPENAI_API_KEY='YOUR KEY GOES HERE'
 3. Replace 'YOUR KEY GOES HERE' with your actual OpenAI API key.
 
-## Install any required dependencies
-## Dependencies
-List all the dependencies necessary for your project, including any web frameworks, libraries, or packages used.
-
-## Environment Variables
-To run this project, you will need to add the following environment variable to your `.env` file:
-- `OPENAI_API_KEY`: Your OpenAI API key, used for generating color palettes.
-
 ## Contributing
 Contributions to this project are welcome! Please refer to our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
