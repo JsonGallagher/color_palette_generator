@@ -36,14 +36,14 @@ def get_colors(msg):
 def prompt_to_palette():
     query = request.form.get("query")
     colors = get_colors(query)
-    # RETURN LIST OF COLORS as JS object
+    # Return list of colors as JS object
     return {"colors": colors}
 
 
 # Home page route
 @app.route("/")
 def index():
-    
+
     return render_template("index.html")
 
 if __name__ == '__main__':
