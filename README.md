@@ -21,8 +21,7 @@ To set up this project for development or local use, follow these steps:
    cd [your-repo-directory]
 
 2. Create a `.env` file in the root directory of the project:
-
-OPENAI_API_KEY='YOUR KEY GOES HERE'
+    OPENAI_API_KEY='YOUR KEY GOES HERE'
 3. Replace 'YOUR KEY GOES HERE' with your actual OpenAI API key.
 
 ## Install any required dependencies
