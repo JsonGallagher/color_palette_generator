@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette Generator</title>
+    <style>
+        h1 {
+            color: peru;
+        }
+    </style>
+</head>
+<body>
+    <h1>"Hello World"</h1>
+    <form id="form">
+        <input type="text" name="query">
+        <button>Submit</button>
+    </form>
+    <script>
+        const form = document.querySelector("#form")
+        form.addEventListener("submit", function(e){
+            e.preventDefault();
+            console.log("Submitted event")
+        })
+    </script>
+</body>
+</html>
