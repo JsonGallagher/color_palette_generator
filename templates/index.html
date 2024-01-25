@@ -6,22 +6,49 @@
     <title>Color Palette Generator</title>
     <style>
         h1 {
-            color: peru;
+            color:royalblue;
         }
     </style>
 </head>
 <body>
-    <h1>"Hello World"</h1>
+    <h1>Color Palette Generator</h1>
     <form id="form">
         <input type="text" name="query">
         <button>Submit</button>
     </form>
     <script>
-        const form = document.querySelector("#form")
-        form.addEventListener("submit", function(e){
+        // Select the form element on the page
+        const form = document.querySelector('form');
+    
+        // Add an event listener to handle form submissions
+        form.addEventListener('submit', async e => {
+            // Prevent the default form submission behavior
             e.preventDefault();
-            console.log("Submitted event")
-        })
+    
+            // Retrieve the value of the 'query' input field from the form
+            const query = form.elements['query'].value;
+    
+            // Send a POST request to the server at the endpoint '/palette'
+            try {
+                const rawResponse = await fetch('/palette', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query })
+                });
+    
+                // Parse the JSON response
+                const content = await rawResponse.json();
+    
+                // Log the response content to the console
+                console.log(content);
+            } catch (error) {
+                // Log any errors that occur during the fetch operation
+                console.error('Error:', error);
+            }
+        });
     </script>
+    
 </body>
 </html>
