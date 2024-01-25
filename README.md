@@ -22,12 +22,16 @@ This project is an interactive color palette generator that uses a web-based for
 To set up this project for development or local use, follow these steps:
 
 1. Clone the repository and navigate to the directory:
-   - git clone [your-repo-url]
-   - cd [your-repo-directory]
+   - `git clone [your-repo-url]`
+   - `cd [your-repo-directory]`
 
 2. Create a `.env` file in the root directory of the project:
    - OPENAI_API_KEY='YOUR KEY GOES HERE'
 3. Replace 'YOUR KEY GOES HERE' with your actual OpenAI API key.
+4. Navigate to the root directory in your terminal
+    - Run `source env/bin/activate`
+5. Start flask server
+    - `flask run` (--debug optional)
 
 ## Contributing
 
@@ -36,3 +40,8 @@ Contributions to this project are welcome! Please refer to our [Contributing Gui
 ## License
 
 This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+
+## Acknowledgements
+
+This project is based off a tutorial offered by Colt Steele on Udemy called Mastering OpenAI Python APIs: Unleash ChatGPT and GPT4
+<https://www.udemy.com/course/mastering-openai/>
