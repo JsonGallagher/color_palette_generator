@@ -5,77 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Palette Generator</title>
     <style>
-        h1 {
-            color:royalblue;
+        html, body {
+            margin:0
         }
         .container {
             background-color: black;
             width: 100%;
-            height: 100vh;
+            height: 95vh;
+            display: flex;
         }
 
         .color {
             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
         }
-
+        .color span{
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
-    <h1>Color Palette Generator</h1>
     <div class="container"></div>
     <form id="form">
         <input type="text" name="query">
         <button>Submit</button>
     </form>
     <script>
-        // Select the form element on the page
+        // Calc contrast color for text based on the background color.
+        function getContrastYIQ(hexcolor){
+            // Remove '#' if it exists in the hex color code
+            hexcolor = hexcolor.replace("#", "");
+            // Convert hex color to RGB
+            const r = parseInt(hexcolor.substr(0,2),16);
+            const g = parseInt(hexcolor.substr(2,2),16);
+            const b = parseInt(hexcolor.substr(4,2),16);
+            // Calculate YIQ - a perceived brightness
+            const yiq = ((r*299)+(g*587)+(b*114))/1000;
+            // Return 'dark' for light backgrounds and 'light' for dark backgrounds
+            return yiq >= 128 ? 'dark' : 'light';
+        }
+    
+        // Event listener for form submission
         const form = document.querySelector('form');
-    
-        // Add an event listener to handle form submissions
         form.addEventListener('submit', async e => {
-            // Prevent the default form submission behavior
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission behavior
     
-            // Retrieve the value of the 'query' input field from the form
-            const query = form.elements['query'].value;
-            console.log(`Query: ${query}`);
-
-            // Send a POST request to the server at the endpoint '/palette'
+            const query = form.elements['query'].value; // Get the user input
+    
             try {
+                // Send user input to server and wait for the color palette response
                 const rawResponse = await fetch('/palette', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ query })
                 });
+        
+                const content = await rawResponse.json(); // Parse JSON response from the server
+                const palette = content.colors; // Extract color palette array from response
     
-            // Parse the JSON response
-            const content = await rawResponse.json();
-            // Correctly access the palette array
-            const palette = content.colors; // This is the correct path
-            // Log the response content to the console
-            console.log(content);
+                // Select the container to display the colors and clear previous content
+                const container = document.querySelector(".container");
+                container.innerHTML = "";
+    
+                // Loop through each color in the palette
+                for(const color of palette) { 
+                    // Create a new div for each color
+                    const div = document.createElement("div");
+                    div.classList.add('color'); // Add 'color' class
+                    div.style.backgroundColor = color; // Set background color
+                    div.style.width = `calc(100% / ${palette.length})`; // Set width dynamically based on palette length
+                    div.style.height = '100%'; // Set height to fill container
 
-            const container = document.querySelector(".container");
-            // Iterate over the palette array to create divs
-            for(const color of palette) { // Use 'palette', not 'content'
-                const div = document.createElement("div");
-                div.classList.add('color');
-                div.style.backgroundColor = color;
-                // Ensure divs are visible and proportionally spaced
-                div.style.width = `calc(100% / ${palette.length})`; // Use template literal correctly
-                div.style.height = '100%'; // Make sure divs are fully visible
+                    div.addEventListener("click", function(){
+                        navigator.clipboard.writeText(color);
+                    })
+    
+                    // Create a span element to display the hex color text
+                    const span = document.createElement("span");
+                    span.innerText = color; // Set text to hex color code
+    
+                    // Apply contrast color for text based on background color
+                    const textColor = getContrastYIQ(color) === 'light' ? '#FFF' : '#000';
+                    span.style.color = textColor; // Set text color for readability
 
-                container.appendChild(div);
-            }
-
+                    // Adding text shadow based on text color for better readability
+                    const textShadow = textColor === '#FFF' ? '1px 1px 5px rgba(0, 0, 0, 0.7)' : '1px 1px 5px rgba(255, 255, 255, 0.7)';
+                    span.style.textShadow = textShadow;
+    
+                    // Append the span to the div and the div to the container
+                    div.appendChild(span);
+                    container.appendChild(div);
+                }
             } catch (error) {
-                // Log any errors that occur during the fetch operation
-                console.error('Error:', error);
+                console.error('Error:', error); // Log errors from fetch operation
             }
         });
     </script>
+    
     
 </body>
 </html>

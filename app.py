@@ -16,11 +16,11 @@ app = Flask(__name__, template_folder='templates')
 def get_colors(msg):
     # Prepare the prompt content for the API call
     prompt = f"""
-    You are a highly consistent color palette generating assistant. Respond only in a JSON array format of hexadecimal color codes. Generate 1 color palette that fits the theme, mood, or instructions in the prompt. Return between 2 and 8 colors, unless explictly asked for a specific number of colors.
+    You are a highly consistent color palette generating assistant. Respond only in a JSON array format of hexadecimal color codes. Generate 1 color palette that fits the theme, mood, or instructions in the prompt. Return between 3 and 8 colors, unless explictly asked for a specific number of colors.
 
     Example prompt and responses:
     Q: Convert the following verbal description of a color palette into a list of colors: Ocean sunrise
-    A: ["#FF5733", "#FFC300", "#FF5733", "#FF5733", "#C70039"]
+    A: ["#FFC300", "#FF5733", "#C70039"]
 
     Q: Conver the following verbal description of a color palette into a list of colors: 4 colors, sage, nature and earth
     A: ["#EDF1D6", "#9DC08D", "#609966", "#40513B"]
@@ -34,10 +34,13 @@ def get_colors(msg):
         model="gpt-3.5-turbo-1106",
         max_tokens=200
     )
-    raw_response = response.choices[0].message.content
-    print(f"Raw API response: {raw_response}")  # Solution 2: Debugging the actual content
 
-    # Solution 1: Clean up the response content
+    raw_response = response.choices[0].message.content
+    
+    # Debugging the actual content
+    # print(f"Raw API response: {raw_response}")
+
+    # Clean up the response content
     clean_response = raw_response.replace("Response: ", "").strip()
 
     # Attempt to parse the cleaned response
