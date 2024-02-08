@@ -8,10 +8,21 @@
         h1 {
             color:royalblue;
         }
+        .container {
+            background-color: black;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .color {
+            height: 100%;
+        }
+
     </style>
 </head>
 <body>
     <h1>Color Palette Generator</h1>
+    <div class="container"></div>
     <form id="form">
         <input type="text" name="query">
         <button>Submit</button>
@@ -27,7 +38,8 @@
     
             // Retrieve the value of the 'query' input field from the form
             const query = form.elements['query'].value;
-    
+            console.log(`Query: ${query}`);
+
             // Send a POST request to the server at the endpoint '/palette'
             try {
                 const rawResponse = await fetch('/palette', {
@@ -38,11 +50,26 @@
                     body: JSON.stringify({ query })
                 });
     
-                // Parse the JSON response
-                const content = await rawResponse.json();
-    
-                // Log the response content to the console
-                console.log(content);
+            // Parse the JSON response
+            const content = await rawResponse.json();
+            // Correctly access the palette array
+            const palette = content.colors; // This is the correct path
+            // Log the response content to the console
+            console.log(content);
+
+            const container = document.querySelector(".container");
+            // Iterate over the palette array to create divs
+            for(const color of palette) { // Use 'palette', not 'content'
+                const div = document.createElement("div");
+                div.classList.add('color');
+                div.style.backgroundColor = color;
+                // Ensure divs are visible and proportionally spaced
+                div.style.width = `calc(100% / ${palette.length})`; // Use template literal correctly
+                div.style.height = '100%'; // Make sure divs are fully visible
+
+                container.appendChild(div);
+            }
+
             } catch (error) {
                 // Log any errors that occur during the fetch operation
                 console.error('Error:', error);

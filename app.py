@@ -21,13 +21,15 @@ def get_colors(msg):
     msg (str): The message to generate the color palette from.
     
     Returns:
-    list: A list of hexadecimal color codes.
+    list: A list of hexadecimal color codes in a consistent JSON array format.
     """
     # Prepare the prompt content for the API call
     prompt = f"""
-    You are a color palette generating assistant that responds to text prompts to make primary color palettes. Generate 1 color palette that fits the theme, mood, or instructions in the prompt. The palette should include 3-5 colors, unless a specific number of colors is stated in the prompt.
+    You are a highly consistent color palette generating assistant. Respond only in a JSON array format of hexadecimal color codes. Generate 1 color palette that fits the theme, mood, or instructions in the prompt. The palette should include exactly 5 colors, unless a specific number of colors is stated in the prompt.
 
-    Format: JSON array of hexadecimal color codes
+    Example prompt and response:
+    Prompt: Ocean sunrise
+    Response: ["#FF5733", "#FFC300", "#FF5733", "#FF5733", "#C70039"]
 
     Text: {msg}
     """
@@ -35,12 +37,23 @@ def get_colors(msg):
     # Make the API call to the OpenAI service
     response = client.chat.completions.create(
         messages=[{"role": "user", "content": prompt}],
-        model="gpt-3.5-turbo-1106",
+        model="gpt-3.5-turbo",
         max_tokens=200
     )
 
-    # Parse and return the JSON array response
-    return json.loads(response.choices[0].message.content)
+    # Attempt to parse the response
+    try:
+        # Extract and return the JSON array response directly
+        colors = json.loads(response.choices[0].message.content)
+        # Ensure the result is a list of colors; otherwise, raise ValueError
+        if not isinstance(colors, list) or not all(isinstance(color, str) and color.startswith('#') for color in colors):
+            raise ValueError("Response format is incorrect")
+        return colors
+    except (ValueError, json.JSONDecodeError) as e:
+        # Log the error or handle it as appropriate
+        print(f"Error parsing the API response: {e}")
+        # Return a default color palette or handle the error as needed
+        return ["#FFFFFF", "#CCCCCC", "#999999"]
 
 # Flask route handling for generating color palettes
 @app.route("/palette", methods=["POST"])
