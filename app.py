@@ -22,7 +22,7 @@ def get_colors(msg):
     Q: Convert the following verbal description of a color palette into a list of colors: Ocean sunrise
     A: ["#FFC300", "#FF5733", "#C70039"]
 
-    Q: Conver the following verbal description of a color palette into a list of colors: 4 colors, sage, nature and earth
+    Q: Convert the following verbal description of a color palette into a list of colors: 4 colors, sage, nature and earth
     A: ["#EDF1D6", "#9DC08D", "#609966", "#40513B"]
 
     Text: {msg}

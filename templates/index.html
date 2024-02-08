@@ -53,14 +53,24 @@
         margin-bottom: 1rem;
     }
 
+    /* Flex Container for Input and Button */
     #form {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        width: 100%; /* or any specific width you prefer */
+        max-width: 800px; /* optional, for responsive design */
+    }
+
+    .input-wrapper {
+        display: flex;
+        width: 100%; /* Ensures it takes the full width of #form */
+        gap: 10px; /* Adjust the gap as needed */
     }
 
     #form input[type="text"] {
+        flex: 1; /* Allows the input to grow and fill available space */
         font-size: 2rem;
         outline: 0;
         border: 2px solid #D9D9D9;
@@ -68,15 +78,18 @@
         background-color: #F2F2F2;
         padding: 20px;
         font-family: 'Montserrat', sans-serif;
-        width: 80%;
+        /* Remove flex-basis if using flex shorthand and specify width or max-width if needed */
+        max-width: calc(100% - (30px + 20px * 2));
     }
 
     .btn {
+        flex-shrink: 0; /* Prevent the button from shrinking */
+        /* Set explicit width or min-width if necessary */
+        min-width: 120px; /* Example minimum width */
+        padding: 20px 30px;
         color: #f2f2f2;
         background-color: #333333;
-        padding: 20px 30px;
         border: none;
-        margin-left: 5px;
         font-size: 2rem;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
@@ -108,9 +121,12 @@
     <div class="banner">Color Palette Generator</div>
     <div class="container"></div>
     <form id="form">
-        <input type="text" name="query" placeholder="Enter a mood or theme ">
-        <button class="btn">Submit</button>
+        <div class="input-wrapper">
+            <input type="text" name="query" placeholder="Enter a mood or theme">
+            <button class="btn">Submit</button>
+        </div>
     </form>
+    
     <script>
         // Calc contrast color for text based on the background color.
         function getContrastYIQ(hexcolor){
