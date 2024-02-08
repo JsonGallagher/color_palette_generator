@@ -16,11 +16,14 @@ app = Flask(__name__, template_folder='templates')
 def get_colors(msg):
     # Prepare the prompt content for the API call
     prompt = f"""
-    You are a highly consistent color palette generating assistant. Respond only in a JSON array format of hexadecimal color codes. Generate 1 color palette that fits the theme, mood, or instructions in the prompt. If a specific number of colors is requested in the prompt, return that number of colors, otherwise return exactly 8 colors in the palette.
+    You are a highly consistent color palette generating assistant. Respond only in a JSON array format of hexadecimal color codes. Generate 1 color palette that fits the theme, mood, or instructions in the prompt. Return between 2 and 8 colors, unless explictly asked for a specific number of colors.
 
-    Example prompt and response:
-    Prompt: Ocean sunrise
-    Response: ["#FF5733", "#FFC300", "#FF5733", "#FF5733", "#C70039"]
+    Example prompt and responses:
+    Q: Convert the following verbal description of a color palette into a list of colors: Ocean sunrise
+    A: ["#FF5733", "#FFC300", "#FF5733", "#FF5733", "#C70039"]
+
+    Q: Conver the following verbal description of a color palette into a list of colors: 4 colors, sage, nature and earth
+    A: ["#EDF1D6", "#9DC08D", "#609966", "#40513B"]
 
     Text: {msg}
     """
