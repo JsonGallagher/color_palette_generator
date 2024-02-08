@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <title>Color Palette Generator</title>
     <style>
     /* Apply box-sizing to all elements for consistency */
@@ -28,7 +31,7 @@
     .container {
         background-color: black;
         width: 100%;
-        height: 100vh;
+        height: calc(100vh - 55px); /* Adjust height to account for the banner */
         display: flex;
     }
 
@@ -64,6 +67,8 @@
         border-radius: 4px;
         background-color: #F2F2F2;
         padding: 20px;
+        font-family: 'Montserrat', sans-serif;
+        width: 80%;
     }
 
     .btn {
@@ -73,6 +78,8 @@
         border: none;
         margin-left: 5px;
         font-size: 2rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
         cursor: pointer;
         border-radius: 4px;
         transition: background-color 0.3s ease;
@@ -82,9 +89,23 @@
         background-color: #4285F4;
     }
 
+    /* Banner Styling */
+    .banner {
+        height: 55px; /* Set the banner height */
+        background-color: #333; /* Dark background for the banner */
+        color: #fff; /* Light text color for contrast */
+        display: flex;
+        align-items: center; /* Vertically center the text */
+        padding-left: 20px; /* Add some padding on the left for the text */
+        font-size: 2rem; /* Adjust the font size as needed */
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-weight: bold;
+    }
+
     </style>
 </head>
 <body>
+    <div class="banner">Color Palette Generator</div>
     <div class="container"></div>
     <form id="form">
         <input type="text" name="query" placeholder="Enter a mood or theme ">
