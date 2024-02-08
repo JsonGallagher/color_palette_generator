@@ -11,7 +11,7 @@
         .container {
             background-color: black;
             width: 100%;
-            height: 95vh;
+            height: 100vh;
             display: flex;
         }
 
@@ -20,10 +20,39 @@
             display: flex;
             justify-content: center;
             align-items: flex-end;
+            cursor: pointer;
         }
+
+        .color:active{
+            opacity: 0.8;
+            transition: 0.2s opacity;
+        }
+
         .color span{
             font-size: 1.5rem;
             margin-bottom: 1rem;
+        }
+
+        #form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #form input[type="text"]{
+            font-size: 2rem;
+            outline: 0;
+            border: 2px solid white;
+            background-color: #F2F2F2;
+            padding: 20px;
+        }
+
+        .btn {
+            background-color: #333333;
+            border: 2px solid white;
+            padding: 20px;
+            font-size: 2rem;
         }
     </style>
 </head>
@@ -31,7 +60,7 @@
     <div class="container"></div>
     <form id="form">
         <input type="text" name="query">
-        <button>Submit</button>
+        <button class="btn">Submit</button>
     </form>
     <script>
         // Calc contrast color for text based on the background color.
