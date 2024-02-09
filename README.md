@@ -8,8 +8,13 @@ This project is an interactive color palette generator that uses a web-based for
 
 Here's a look at the app in action:
 
+## Desktop Web Preview
+
 ![Desktop Web preview](images/app-image-desktop.png)
-![Mobile Web preview](images/app-image-mobile.png)
+
+## Mobile Web Preview
+
+<img src="images/app-image-mobile.png" style="width: 50%;" alt="Mobile Web preview">
 
 ## Features
 
