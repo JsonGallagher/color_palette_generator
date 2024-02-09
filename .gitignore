@@ -1,3 +1,126 @@
-.env
-.DS_Store
+# Project-specific
+.env (environment variables)
+config/secrets.yml (sensitive configuration)
+.env.local
 examples/
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Python virtual environments
+venv/
+env/
+*.venv
+*.env
+
+# Compiled code
+*.o
+*.a
+*.so
+*.exe
+*.dll
+*.class
+*.jar
+*.pyc
+*.pyo
+*.pyd
+
+# Packaged files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Python cache directories
+__pycache__/
+*.py[cod]
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor folders
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime*
+*.intellij*
+*.workspace
+*.tmp
+*.tmp_proj
+*.tmp_projekt
+nbproject/
+.classpath
+.project
+.settings/
+*.launch
+
+# Build output directories
+bin/
+out/
+build/
+dist/
+tmp/
+obj/
+*.metagen
+*.iml
+
+# Backup files
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Other files and directories to ignore
+.sass-cache/
+.cache/
+*.sass-cache
+.cached
+.cachefile
+.elc
+.projectile
+.svn/
+*.pid
+*.seed
+*.pid.lock
+
+# Node.js logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# Ignore all log files and temporary files
+*.log
+*.tmp
+*.tlog
+*.tmproj
+*.tmp_proj
+*.tmp_projekt
+*.temp
+*.temporary
+*.temp_proj
+*.bak
+*~
+*.bak
