@@ -4,6 +4,12 @@
 
 This project is an interactive color palette generator that uses a web-based form to accept text prompts for creating primary color palettes. It's designed to generate color palettes that align with specific themes, moods, or instructions provided by the user. Once generated, the colors are displayed on the website, allowing for quick and easy copying of HEX values.
 
+## App Preview
+
+Here's a look at the app in action:
+
+![App preview](images/app-image.png)
+
 ## Features
 
 - **Interactive Web Form**: Input your color palette prompt through a simple web form interface.
