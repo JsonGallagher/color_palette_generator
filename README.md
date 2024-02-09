@@ -47,7 +47,7 @@ To set up this project for development or local use, follow these steps:
 
 ## Contributing
 
-Contributions to this project are welcome! Please refer to our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Contributions to this project are welcome!
 
 ## License
 
